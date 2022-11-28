@@ -17,7 +17,7 @@ export class LinkController {
     @Body('url') url: string,
     @Body('name') name: string | undefined,
   ) {
-    console.log("================\n", "url: ", url, "\n================");
-    console.log("================\n", "name: ", name, "\n================");
+
+    return this.linkService.createNew(url, name);
   }
 }

@@ -16,6 +16,7 @@ export class LinkService {
       url,
       name: name ? name : (Math.random() + 1).toString(36).substring(7), // TODO: this can have clashes!
     });
+    await link.save();
     return link;
   }
 }
