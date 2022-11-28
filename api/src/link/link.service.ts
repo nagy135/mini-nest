@@ -19,4 +19,8 @@ export class LinkService {
     await link.save();
     return link;
   }
+
+  async findOneByName(name: string): Promise<Link> {
+    return this.linkRepository.findOne({ where: { name } });
+  }
 }
