@@ -1,4 +1,4 @@
-POST http://localhost:13000
+POST https://mini.infiniter.eu
 Content-Type: application/json
 
 {
@@ -6,14 +6,14 @@ Content-Type: application/json
     "name": "todos"
 }
 
-POST http://localhost:13000
+POST https://mini.infiniter.eu
 Content-Type: application/json
 
 {
     "url": "https://google.com"
 }
 
-GET http://localhost:13000/all
+GET https://mini.infiniter.eu/all
 
-GET http://localhost:13000/todos
-GET http://localhost:13000/c1j9rf
+GET https://mini.infiniter.eu/todos
+GET https://mini.infiniter.eu/c1j9rf
