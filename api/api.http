@@ -1,0 +1,16 @@
+POST http://localhost:13000/link
+Content-Type: application/json
+
+{
+    "url": "https://jsonplaceholder.typicode.com/todos/1",
+    "name": "todos"
+}
+
+POST http://localhost:13000/link
+Content-Type: application/json
+
+{
+    "url": "https://google.com"
+}
+
+GET http://localhost:13000/link
