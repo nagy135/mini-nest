@@ -7,8 +7,8 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app
 COPY yarn.lock /usr/src/app
-# COPY craco.config.js /usr/src/app
-# COPY tailwind.config.js /usr/src/app
+COPY craco.config.js /usr/src/app
+COPY tailwind.config.js /usr/src/app
 
 # Production use node instead of root
 # USER node
