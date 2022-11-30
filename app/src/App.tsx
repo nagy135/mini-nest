@@ -1,8 +1,17 @@
+import AddLink from "@components/add-link";
+import Links from "@components/links";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <div className="App">
-      <div className="ml-5">haha</div>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="App">
+        <AddLink />
+        <Links />
+      </div>
+    </QueryClientProvider>
   );
 }
 
