@@ -8,6 +8,7 @@ module.exports = {
       "@constants": path.resolve(__dirname, "src/constants"),
       "@ctypes": path.resolve(__dirname, "src/ctypes"),
       "@utils": path.resolve(__dirname, "src/utils"),
+      "@context": path.resolve(__dirname, "src/context"),
       "@api": path.resolve(__dirname, "src/api"),
       "@utils": path.resolve(__dirname, "src/utils"),
     },
