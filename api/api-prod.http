@@ -10,6 +10,14 @@ POST https://mini.infiniter.eu
 Content-Type: application/json
 
 {
+    "url": "https://www.booking.com/hotel/sk/rekreacna-chata-pod-jedlovinou.sk.html?aid=309654&label=lodges-slovak-sk-nBiaX%2A5sslwElbhw8BSiRAS500819112174%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-179549149732%3Alp9062578%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YcsZ-Id2vkzIfTmYhvC5HOg&sid=dff5eb6f22127ab5543d32f1d5cf3c13&all_sr_blocks=303472902_341986808_2_2_0;checkin=2022-12-17;checkout=2022-12-18;dest_id=-846829;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=1;highlighted_blocks=303472902_341986808_2_2_0;hpos=1;matching_block_id=303472902_341986808_2_2_0;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;sr_pri_blocks=303472902_341986808_2_2_0__4800;srepoch=1669648319;srpvid=f96c6adfee920751;type=total;ucfs=1&#hotelTmpl",
+    "name": "cheap-chata"
+}
+
+POST https://mini.infiniter.eu
+Content-Type: application/json
+
+{
     "url": "https://google.com"
 }
 
