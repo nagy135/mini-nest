@@ -12,7 +12,11 @@ export class LinkService {
     return this.linkRepository.find();
   }
 
-  async createNew(url: string, name?: string): Promise<Link> {
+  findByToken(token: string) {
+    return this.linkRepository.find({ where: { token } });
+  }
+
+  async createNew(url: string, token: string, name?: string): Promise<Link> {
     if (name && (await this.findOneByName(name))) {
       throw new ConflictException(
         'Choose different name...conflict with another link',
@@ -20,6 +24,7 @@ export class LinkService {
     }
     const link = this.linkRepository.create({
       url,
+      token,
       name: name ? name : randomString(7),
     });
     while (await this.findOneByName(link.name)) {

@@ -11,6 +11,11 @@ export class AppController {
     return this.linkService.findAll();
   }
 
+  @Get('token/:token')
+  listByUserToken(@Param('token') token: string) {
+    return this.linkService.findByToken(token);
+  }
+
   @Get(':name')
   async getLink(@Param('name') name: string , @Res() res: Response)  {
     const link = await this.linkService.findOneByName(name);
@@ -23,9 +28,10 @@ export class AppController {
   @Post()
   createLink(
     @Body('url') url: string,
+    @Body('token') token: string | undefined,
     @Body('name') name: string | undefined,
   ) {
 
-    return this.linkService.createNew(url, name);
+    return this.linkService.createNew(url, token, name);
   }
 }

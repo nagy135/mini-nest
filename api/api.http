@@ -14,6 +14,7 @@ Content-Type: application/json
 }
 
 GET http://localhost:13000/all
+GET http://localhost:13000/token/haha
 
 GET http://localhost:13000/todos
 GET http://localhost:13000/c1j9rf
