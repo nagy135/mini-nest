@@ -1,17 +1,34 @@
+import { LINKS_QUERY_KEY } from "@constants/common";
 import { TokenContext } from "@context/token";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { truncateWithEllipsis } from "@utils/common";
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import getLinks from "./services/internal/get-links";
+
+type ListType = "all" | "mine";
 
 export default () => {
   const { token } = useContext(TokenContext);
 
+  // NOTE: this is needed because state isnt updating inside useQuery
+  // queryFn handler
+  const tokenRef = useRef(token);
+  useEffect(() => {
+    tokenRef.current = token;
+  }, [token]);
+  const queryClient = useQueryClient();
+
+  const listTypeRef = useRef<ListType>("all");
+
   const [clicked, setClicked] = useState<Record<string, boolean>>({});
   const { data: links, isSuccess } = useQuery({
-    queryKey: ["links"],
+    queryKey: [LINKS_QUERY_KEY],
     queryFn: async () => {
-      const data = await getLinks(token ?? undefined);
+      const tokenUse =
+        listTypeRef.current === "mine" && tokenRef.current
+          ? tokenRef.current
+          : undefined;
+      const data = await getLinks(tokenUse);
       if (!Object.keys(clicked).length) {
         setClicked(Object.fromEntries(data.map((e) => [e.id, false])));
       } else {
@@ -25,6 +42,11 @@ export default () => {
       return data;
     },
   });
+
+  const handleRadioSwitch = (change: ListType) => {
+    listTypeRef.current = change;
+    queryClient.invalidateQueries([LINKS_QUERY_KEY]);
+  };
 
   const handleClick = useCallback((id: string) => {
     setClicked((prev) => ({ ...prev, [id]: !prev[id] ?? false }));
@@ -40,9 +62,10 @@ export default () => {
             <span className="label-text">My links</span>
             <input
               type="radio"
-              name="radio-10"
+              name="mine"
               className="radio checked:bg-red-500"
-              checked
+              checked={listTypeRef.current === "mine"}
+              onChange={() => handleRadioSwitch("mine")}
               disabled={token === null}
             />
           </label>
@@ -52,9 +75,10 @@ export default () => {
             <span className="label-text">All</span>
             <input
               type="radio"
-              name="radio-10"
+              name="all"
+              onChange={() => handleRadioSwitch("all")}
               className="radio checked:bg-blue-500"
-              checked
+              checked={listTypeRef.current === "all"}
             />
           </label>
         </div>
