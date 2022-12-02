@@ -2,6 +2,7 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { randomString } from '@utils/common';
 import { Repository } from 'typeorm';
+import { CreateLinkDto } from './dto/createLink.dto';
 import { Link } from './link.entity';
 
 @Injectable()
@@ -16,7 +17,8 @@ export class LinkService {
     return this.linkRepository.find({ where: { token } });
   }
 
-  async createNew(url: string, token: string, name?: string): Promise<Link> {
+  async createNew(createLinkDto: CreateLinkDto): Promise<Link> {
+    const { url, name, token } = createLinkDto;
     if (name && (await this.findOneByName(name))) {
       throw new ConflictException(
         'Choose different name...conflict with another link',

@@ -1,5 +1,6 @@
 import { Body, Controller, Get, NotFoundException, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
+import { CreateLinkDto } from './link/dto/createLink.dto';
 import { LinkService } from './link/link.service';
 
 @Controller()
@@ -27,11 +28,8 @@ export class AppController {
 
   @Post()
   createLink(
-    @Body('url') url: string,
-    @Body('token') token: string | undefined,
-    @Body('name') name: string | undefined,
+    @Body() createLinkDto: CreateLinkDto
   ) {
-
-    return this.linkService.createNew(url, token, name);
+    return this.linkService.createNew(createLinkDto);
   }
 }
