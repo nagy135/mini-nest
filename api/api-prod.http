@@ -25,3 +25,5 @@ GET https://mini.infiniter.eu/all
 
 GET https://mini.infiniter.eu/todos
 GET https://mini.infiniter.eu/c1j9rf
+
+DELETE https://mini.infiniter.eu/link/reset

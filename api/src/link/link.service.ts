@@ -13,6 +13,10 @@ export class LinkService {
     return this.linkRepository.find();
   }
 
+  truncate() {
+    return this.linkRepository.clear();
+  }
+
   findByToken(token: string) {
     return this.linkRepository.find({ where: { token } });
   }
