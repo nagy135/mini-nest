@@ -92,7 +92,7 @@ export default () => {
             {clicked[e.id] ? truncateWithEllipsis(e.url, 20) : e.name}
           </a>
           <button onClick={() => handleClick(e.id)} className="btn btn-warning">
-            {clicked[e.id] ? "Name" : "Target"}
+            {clicked[e.id] ? "| Name |" : "Target"}
           </button>
         </div>
       ))}
