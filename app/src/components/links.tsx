@@ -91,24 +91,30 @@ export default () => {
         </div>
       </div>
       {links.map((e) => (
-        <div
-          className="flex gap-1 justify-between"
-          key={`link-wrapper-${e.id}`}
-        >
-          <a className="btn flex-1" href={e.url}>
-            {clicked[e.id] ? truncateWithEllipsis(e.url, 20) : e.name}
-          </a>
-          {token && e.token === token ? (
+        <div className="flex flex-col">
+          <div
+            className="flex gap-1 justify-between"
+            key={`link-wrapper-${e.id}`}
+          >
+            <a className="btn flex-1" href={e.url}>
+              {clicked[e.id] ? truncateWithEllipsis(e.url, 20) : e.name}
+            </a>
+            {token && e.token === token ? (
+              <button
+                onClick={() => handleDelete(e.id, token)}
+                className="btn btn-error"
+              >
+                {"❌"}
+              </button>
+            ) : null}
             <button
-              onClick={() => handleDelete(e.id, token)}
-              className="btn btn-error"
+              onClick={() => handleClick(e.id)}
+              className="btn btn-warning"
             >
-              {"❌"}
+              {clicked[e.id] ? "| Name |" : "Target"}
             </button>
-          ) : null}
-          <button onClick={() => handleClick(e.id)} className="btn btn-warning">
-            {clicked[e.id] ? "| Name |" : "Target"}
-          </button>
+          </div>
+          {clicked[e.id] ? <div>{e.url}</div> : null}
         </div>
       ))}
     </div>
