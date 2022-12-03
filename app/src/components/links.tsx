@@ -97,7 +97,7 @@ export default () => {
             key={`link-wrapper-${e.id}`}
           >
             <a className="btn flex-1" href={e.url}>
-              {clicked[e.id] ? truncateWithEllipsis(e.url, 20) : e.name}
+              {e.name}
             </a>
             {token && e.token === token ? (
               <button
@@ -114,7 +114,7 @@ export default () => {
               {clicked[e.id] ? "| Name |" : "Target"}
             </button>
           </div>
-          {clicked[e.id] ? <div>{e.url}</div> : null}
+          {clicked[e.id] ? <div className="my-1 text-sm font-mono">{e.url}</div> : null}
         </div>
       ))}
     </div>
