@@ -14,7 +14,15 @@ Content-Type: application/json
 }
 
 GET http://localhost:13000/all
-GET http://localhost:13000/token/haha
+
+GET http://localhost:13000/token/48b71d6a-042c-49f1-b0f2-322d51ed728e
+
+DELETE http://localhost:13000/link/0622666c-6f65-403d-a059-6db6086bc994
+Content-Type: application/json
+
+{
+    "sadsdtoken":"48b71d6a-042c-49f1-b0f2-322d51ed728e"
+}
 
 GET http://localhost:13000/todos
 GET http://localhost:13000/c1j9rf

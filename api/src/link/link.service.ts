@@ -1,8 +1,13 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { randomString } from '@utils/common';
 import { Repository } from 'typeorm';
 import { CreateLinkDto } from './dto/createLink.dto';
+import { DeleteLinkDto } from './dto/deleteLink.dto';
 import { Link } from './link.entity';
 
 @Injectable()
@@ -15,6 +20,15 @@ export class LinkService {
 
   truncate() {
     return this.linkRepository.clear();
+  }
+  async deleteByIdAndCreatorId(id: string, deleteLinkDto: DeleteLinkDto) {
+    const { token } = deleteLinkDto;
+    const link = await this.linkRepository.findOneOrFail({
+      where: { id, token },
+    });
+    if (link.token == token) {
+      link.remove();
+    } else throw new ForbiddenException('Only token owner can delete link');
   }
 
   findByToken(token: string) {
