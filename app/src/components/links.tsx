@@ -3,6 +3,7 @@ import { TokenContext } from "@context/token";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { truncateWithEllipsis } from "@utils/common";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import deleteLink from "./services/internal/delete-link";
 import getLinks from "./services/internal/get-links";
 
 type ListType = "all" | "mine";
@@ -42,6 +43,12 @@ export default () => {
       return data;
     },
   });
+
+  const handleDelete = (id: string, token: string) => {
+    deleteLink(id, token).then(() =>
+      queryClient.invalidateQueries([LINKS_QUERY_KEY])
+    );
+  };
 
   const handleRadioSwitch = (change: ListType) => {
     listTypeRef.current = change;
@@ -91,6 +98,14 @@ export default () => {
           <a className="btn flex-1" href={e.url}>
             {clicked[e.id] ? truncateWithEllipsis(e.url, 20) : e.name}
           </a>
+          {token && e.token === token ? (
+            <button
+              onClick={() => handleDelete(e.id, token)}
+              className="btn btn-error"
+            >
+              {"❌"}
+            </button>
+          ) : null}
           <button onClick={() => handleClick(e.id)} className="btn btn-warning">
             {clicked[e.id] ? "| Name |" : "Target"}
           </button>
