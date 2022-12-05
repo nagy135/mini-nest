@@ -4,6 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import deleteLink from "./services/internal/delete-link";
 import getLinks from "./services/internal/get-links";
+import Cat from "@assets/cat";
 
 type ListType = "all" | "mine";
 
@@ -66,15 +67,18 @@ export default () => {
     <div className="container max-w-sm mx-auto flex flex-col gap-2">
       <div className="flex justify-between border-2 p-2 rounded-md border-gray-300">
         <button
-          className={`btn ${
-            listType === "mine" ? "btn-warning" : ""
-          }`}
+          className={`btn ${listType === "mine" ? "btn-warning" : ""}`}
           onClick={() => handleRadioSwitch("mine")}
           disabled={token === null}
         >
           Mine
         </button>
+        <div className={`flex mx-4 flex-1 ${
 
+            listTypeRef.current === "all" ? "justify-end" : "justify-start"
+}`}>
+          <Cat />
+        </div>
         <button
           className={`btn ${
             listTypeRef.current === "all" ? "btn-warning" : ""
