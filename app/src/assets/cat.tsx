@@ -1,6 +1,13 @@
-function Cat() {
+import { CSSProperties } from "react";
+
+interface IProps {
+  style: CSSProperties
+}
+
+const Cat = ({style}: IProps) => {
   return (
     <svg
+      style={style}
       xmlns="http://www.w3.org/2000/svg"
       width="38"
       height="45"
@@ -30,3 +37,4 @@ function Cat() {
 }
 
 export default Cat;
+
