@@ -73,11 +73,14 @@ export default () => {
         >
           Mine
         </button>
-        <div className={`flex mx-4 flex-1 ${
-
-            listTypeRef.current === "all" ? "justify-end" : "justify-start"
-}`}>
-          <Cat />
+        <div className={`relative`}>
+          <Cat
+            style={{
+              position: "absolute",
+              transform: listTypeRef.current === "mine" ?  "translateX(-190%)": "translateX(100%)",
+              transition: "all 300ms",
+            }}
+          />
         </div>
         <button
           className={`btn ${
