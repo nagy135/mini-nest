@@ -77,7 +77,7 @@ export default () => {
           <Cat
             style={{
               position: "absolute",
-              transform: listTypeRef.current === "mine" ?  "translateX(-190%)": "translateX(100%)",
+              transform: listType === "mine" ?  "translateX(-190%)": "translateX(100%)",
               transition: "all 300ms",
             }}
           />
