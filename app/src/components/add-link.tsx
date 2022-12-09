@@ -35,13 +35,13 @@ export default () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Link name"
+              placeholder="name"
               className="input input-bordered w-full"
             />
             <textarea
               className="textarea textarea-bordered w-full"
               value={url}
-              placeholder="Url"
+              placeholder="url"
               onChange={(e) => setUrl(e.target.value)}
             ></textarea>
             <button onClick={createLinkHandler} className="btn btn-primary">
